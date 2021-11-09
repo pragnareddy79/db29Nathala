@@ -15,8 +15,16 @@
     "morgan": "^1.10.0",
     "pug": "^3.0.2"
   },
+  "description": "",
   "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pragnareddy79/fwb29Nathala.git"
+  },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "bugs": {
+    "url": "https://github.com/pragnareddy79/fwb29Nathala/issues"
+  },
+  "homepage": "https://github.com/pragnareddy79/fwb29Nathala#readme"
 }

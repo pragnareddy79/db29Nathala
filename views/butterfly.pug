@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= title
+    - let butterflys  =[{Size:"small",color:"Red",price:1000},{Size:"Medium",color:"Black",price:2000},{Size:"Large",color:"White",price:5000}]
+  div(class="container-fluid mt-3")
+  div(class="row")
+    each butterfly,index in butterflys  
+        div(class="col-sm-2" onclick=`buy(${index})`) #{butterfly.Size} - #{butterfly.color} - #{butterfly.price} 
+  script.
+     
+      function buy(itemNo)
+      {
+        alert(`You purchased Item ${itemNo+1}`)
+      }
+     
