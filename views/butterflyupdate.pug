@@ -1,0 +1,45 @@
+extends layout
+
+block content
+  h1(id="title")= title
+
+  if (toShow == null)
+    h2 No instance to delete
+  else
+  - let butterflyid = toShow._id
+  - let Size = toShow.Size
+  - let color = toShow.color
+  - let price = toShow.price
+  
+  div.row(class='mb-2')
+    div.mr-1 ID is
+    div #{butterflyid}
+  - let actionid = "/resource/butterfly/" + butterflyid
+  form(id='butterflyForm', action= actionid, method="PUT")
+    div.form-group
+        label.butterflyAttr(for='Size') Size
+        input#butterflytype(type='text', name='Size', value= Size )
+    div.form-group
+        label.butterflyAttr(for='color') color
+        input#size(type='text', name='color', value= color )
+    div.form-group
+        label.butterflyAttr(for='price') price
+        input#cost(type='number', name='price', value= price )
+    input(type="submit")
+  script.
+    document.forms['butterflyForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+        method: 'PUT',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Update succeded")
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Update failed " + error )
+      });
+    });

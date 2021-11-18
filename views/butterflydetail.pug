@@ -1,0 +1,21 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ if (toShow == null)
+    h2 No instance to detail
+  else
+  - let butterflySize = toShow.Size 
+  - let butterflycolor = toShow.color
+  - let butterflyprice = toShow.price
+  div 
+    div.row 
+      div(class='butterflyAttr mr-3') butterfly ID is: 
+      div(class='variety stylesheetnew') #{butterflySize} 
+    div.row 
+      div(class='butterflyAttr mr-3') butterfly Type is: 
+      div(class='variety stylesheetnew') #{butterflycolor} 
+    div.row 
+      div(class='butterflyAttr mr-3') butterfly Size is: 
+      div(class='variety stylesheetnew') #{butterflyprice} 
+ 

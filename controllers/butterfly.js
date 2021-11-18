@@ -58,7 +58,7 @@ exports.butterfly_delete =  async function(req, res) {
 // Handle butterfly update form on PUT. 
 exports.butterfly_update_put = async function(req, res) { 
     console.log(`update on id ${req.params.id} with body 
-//  ${JSON.stringify(req.body)}`) 
+//DSB  ${JSON.stringify(req.body)}`) 
     try { 
         let toUpdate = await butterfly.findById( req.params.id) 
         // Do updates of properties 
@@ -86,3 +86,57 @@ exports.butterfly_view_all_Page = async function(req, res) {
         res.send(`{"error": ${err}}`); 
     }   
 }; 
+
+ // Handle a show one view with id specified by query 
+ exports.butterfly_view_one_Page = async function(req, res) { 
+    console.log("single view for id "  + req.query.id) 
+    try{ 
+        result = await butterfly.findById( req.query.id) 
+        res.render('butterflydetail',  
+{ title: 'butterfly Detail', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+
+// Handle building the view for creating a butterfly. 
+// No body, no in path parameter, no query. 
+// Does not need to be async 
+exports.butterfly_create_Page =  function(req, res) { 
+    console.log("create view") 
+    try{ 
+        res.render('butterflycreate', { title: 'butterfly Create'}); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+
+// Handle building the view for updating a butterfly.
+// query provides the id
+exports.butterfly_update_Page =  async function(req, res) {
+    console.log("update view for item "+req.query.id)
+    try{
+        let result = await butterfly.findById(req.query.id)
+        res.render('butterflyupdate', { title: 'Updated butterfly', toShow: result });
+    }
+    catch(err){
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
+// Handle a delete one view with id from query
+exports.butterfly_delete_Page = async function(req, res) {
+    console.log("Delete view for id "  + req.query.id)
+    try{
+        result = await butterfly.findById(req.query.id)
+        res.render('butterflydelete', { title: 'Deleted butterfly', toShow: result });
+    }
+    catch(err){
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};

@@ -5,7 +5,7 @@ var api_controller = require('../controllers/api');
 var butterfly_controller = require('../controllers/butterfly');
 /// API ROUTE ///
 // GET resources base.
-router.get('/resource', api_controller.api);
+router.get('/', api_controller.api);
 /// Handbag ROUTES ///
 // POST request for creating a Handbag.
 router.post('/butterfly', butterfly_controller.butterfly_create_post);
