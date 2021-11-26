@@ -1,7 +1,10 @@
 const mongoose = require("mongoose") 
 const butterflySchema = mongoose.Schema({ 
     Size: String,
-    color: String,
+    color: {
+       type: String,
+       minLength:2
+    },
     price: Number
 }) 
  

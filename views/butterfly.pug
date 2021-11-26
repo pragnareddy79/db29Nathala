@@ -1,15 +1,29 @@
 extends layout
 
 block content
+ 
   h1= title
-    - let butterflys  =[{Size:"small",color:"Red",price:1000},{Size:"Medium",color:"Black",price:2000},{Size:"Large",color:"White",price:5000}]
-  div(class="container-fluid mt-3")
-  div(class="row m-1")
-    each butterfly,index in butterflys  
-     - let destination = `dispatch(\"/butterfly/update?id=${butterfly._id}\")`
-        div(class="col-sm-2" onclick=`buy(${index})`) #{butterfly.Size} - #{butterfly.color} - #{butterfly.price} 
-         button.btn( class="btn-primary ml-1", onclick= destination) Update 
-  script. 
-     function dispatch(path){ 
-      window.location.href=path 
-    }
+  p Welcome to the butterfly pug
+  div(class="container-fluid")
+        div(class="row")
+            -
+                let butterfly = results
+  div(class="container-fluid") 
+    div(class="row") 
+      each item in butterfly 
+        - let destination = `dispatch(\"/butterfly/update?id=${item._id}\")`
+       
+        div(class="row-sm-2", class="m-1") Item #{item.Size}(#{item.color}) is #{item.price}
+            button.btn( class="btn-primary ml-1", onclick= destination) Update  
+          
+
+        script.                
+            function buy(itemNo)
+            {
+                  alert(`you purchased Item ${itemNo+1}`)
+            }
+        script. 
+             function dispatch(path)
+            { 
+                 window.location.href=path 
+            } 
