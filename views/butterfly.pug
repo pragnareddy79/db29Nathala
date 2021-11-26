@@ -1,7 +1,8 @@
 extends layout
 
 block content
- 
+  - let create = `dispatch(\"/butterfly/create\")`
+  button.btn(class="btn-primary m1-1", onclick=create) Create
   h1= title
   p Welcome to the butterfly pug
   div(class="container-fluid")
@@ -12,10 +13,12 @@ block content
     div(class="row") 
       each item in butterfly 
         - let destination = `dispatch(\"/butterfly/update?id=${item._id}\")`
-       
-        div(class="row-sm-2", class="m-1") Item #{item.Size}(#{item.color}) is #{item.price}
+        - let detail=`dispatch(\"/butterfly/detail/?id=${item._id}\")`
+        - let del=`dispatch(\"/butterfly/delete/?id=${item._id}\")`
+        div(class="row-sm-2", class="m-1") Butterfly #{item.Size}(#{item.color}) is #{item.price}
             button.btn( class="btn-primary ml-1", onclick= destination) Update  
-          
+            button.btn( class="btn-dark ml-2", onclick=detail ) Get Detail
+            button.btn( class="btn-warning ml-2", onclick=del ) Delete
 
         script.                
             function buy(itemNo)
